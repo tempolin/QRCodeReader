@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quest対応Web QRコードリーダー</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="icon" href="./public/favicon.ico">
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Quest対応Web QRコードリーダー</h1>
+      <p>QRを読み取っても自動で外部サイトへ移動しません。HTTPSのみ「開く」が有効です。</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel" aria-label="カメラ">
+        <h2>カメラ</h2>
+        <div class="video-shell">
+          <video id="camera" playsinline></video>
+        </div>
+        <div class="controls">
+          <button type="button" id="start">開始</button>
+          <button type="button" id="stop" disabled>停止</button>
+          <button type="button" id="open" disabled>リンクを開く</button>
+          <button type="button" id="copy" disabled>コピー</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="読み取り結果">
+        <h2>読み取り結果</h2>
+        <div class="status-row">
+          <span class="label">状態</span>
+          <span id="statusText">停止</span>
+        </div>
+        <div class="result-block">
+          <span class="label">結果</span>
+          <pre id="resultText">未読み取り</pre>
+        </div>
+        <div class="status-row">
+          <span class="label">ドメイン</span>
+          <span id="domainText">-</span>
+        </div>
+        <div class="warning-block">
+          <span class="label">警告</span>
+          <ul id="warningList"></ul>
+        </div>
+        <p id="errorText" class="error-text" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

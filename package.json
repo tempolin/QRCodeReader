@@ -1,0 +1,9 @@
+{
+  "name": "quest-qr-code-reader",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  }
+}
