@@ -1,4 +1,3 @@
-// 画面表示の更新を担当する。
 const statusElement = document.getElementById("statusText");
 const resultElement = document.getElementById("resultText");
 const domainElement = document.getElementById("domainText");

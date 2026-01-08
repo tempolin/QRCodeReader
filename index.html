@@ -10,12 +10,17 @@
   <body>
     <header class="page-header">
       <h1>Quest対応Web QRコードリーダー</h1>
-      <p>QRを読み取っても自動で外部サイトへ移動しません。HTTPSのみ「開く」が有効です。</p>
+      <p>QRを読み取っても自動で外部URLへ遷移しません。開くボタンはhttpsのみ有効です。</p>
     </header>
 
     <main class="layout">
       <section class="panel" aria-label="カメラ">
         <h2>カメラ</h2>
+        <div class="camera-row">
+          <label for="cameraSelect">カメラ</label>
+          <select id="cameraSelect" aria-label="カメラ一覧"></select>
+          <button type="button" id="refreshCameras">一覧更新</button>
+        </div>
         <div class="video-shell">
           <video id="camera" playsinline></video>
         </div>
@@ -31,7 +36,7 @@
         <h2>読み取り結果</h2>
         <div class="status-row">
           <span class="label">状態</span>
-          <span id="statusText">停止</span>
+          <span id="statusText">停止中</span>
         </div>
         <div class="result-block">
           <span class="label">結果</span>

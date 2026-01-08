@@ -1,4 +1,3 @@
-// QRスキャンの開始/停止と結果取得を担当する。
 import QrScanner from "https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.min.js";
 
 QrScanner.WORKER_PATH = "https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner-worker.min.js";
@@ -35,6 +34,24 @@ export function createScanner(videoElement, onResult, onError) {
     },
     destroy: () => {
       scanner.destroy();
+    },
+    listCameras: async (requestLabels = false) => {
+      if (typeof QrScanner.listCameras === "function") {
+        return QrScanner.listCameras(requestLabels);
+      }
+      if (!navigator.mediaDevices?.enumerateDevices) {
+        return [];
+      }
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      return devices
+        .filter((device) => device.kind === "videoinput")
+        .map((device) => ({ id: device.deviceId, label: device.label }));
+    },
+    setCamera: async (cameraId) => {
+      if (!cameraId || typeof scanner.setCamera !== "function") {
+        return;
+      }
+      await scanner.setCamera(cameraId);
     }
   };
 }

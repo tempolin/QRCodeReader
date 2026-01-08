@@ -1,4 +1,3 @@
-// 読み取り結果の検証とURL判定を担当する。
 const dangerousSchemes = ["javascript:", "data:", "file:", "vbscript:", "blob:", "about:"];
 
 export function validatePayload(rawText) {
@@ -19,6 +18,7 @@ export function validatePayload(rawText) {
 
   const hasScheme = /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed);
   if (!hasScheme) {
+    result.warnings.push("URLではありません。");
     return result;
   }
 
@@ -26,7 +26,7 @@ export function validatePayload(rawText) {
   try {
     parsed = new URL(trimmed);
   } catch {
-    result.warnings.push("URLの形式として読み取れませんでした。");
+    result.warnings.push("URLの形式として認識できません。");
     return result;
   }
 
